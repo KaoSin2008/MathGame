@@ -1,0 +1,177 @@
+< < < Trò chơi tư duy
+
+
+    <title>MathGame</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+    
+<link rel="stylesheet" type="text/css" href="index.css">
+
+
+       
+
+
+    <h1>Trò chơi Toán học</h1>
+    <div id="level"></div>
+    <div id="wronganswer"></div>
+    <div id="rightanswer"></div>
+    <div id="score"></div>
+    <button onclick="resetGame()">Reset</button>
+    <button onclick="startGame()">Bắt đầu trò chơi</button>
+
+    <script type="text/javascript">
+        var level = 1;
+        var rightanswer = 0;
+        var wronganswer = 0;
+        var score = 0;
+        function resetGame() {
+            // Thực hiện các thao tác cần thiết để reset lại trò chơi
+            // ...
+            
+            // Sau khi reset, có thể làm mới lại trang web bằng cách sử dụng:
+            window.location.reload();
+        }
+        function startGame() {
+            document.getElementById("rightanswer").innerHTML = "Đáp án đúng: " + rightanswer;
+            document.getElementById("score").innerHTML = "Điểm số: " + score;
+            document.getElementById("level").innerHTML = "Cấp độ: " + level;
+            document.getElementById("wronganswer").innerHTML = "Đáp án sai: " + wronganswer;
+            generateQuestion();
+            
+        }
+
+        function generateQuestion() {
+            // Tạo câu hỏi toán học tại đây
+            if (level == 1){
+
+            var num1 = Math.floor(Math.random() * 10) + 1; // Số ngẫu nhiên từ 1-10
+            var num2 = Math.floor(Math.random() * 10) + 1; // Số ngẫu nhiên từ 1-10
+            
+            var question = num1 + " + " + num2; // Câu hỏi là phép cộng hai số
+
+            var answer = prompt(question); // Hiển thị câu hỏi và yêu cầu người chơi nhập câu trả lời
+
+            checkAnswer(answer, num1 + num2); // Kiểm tra câu trả lời
+            }
+            if (level == 2){
+
+                var num1 = Math.floor(Math.random() * 50) + 1; // Số ngẫu nhiên từ 1-50
+                var num2 = Math.floor(Math.random() * 50) + 1; // Số ngẫu nhiên từ 1-50
+                
+                var question = num1 + " + " + num2; // Câu hỏi là phép cộng hai số
+    
+                var answer = prompt(question); // Hiển thị câu hỏi và yêu cầu người chơi nhập câu trả lời
+    
+                checkAnswer(answer, num1 + num2); // Kiểm tra câu trả lời
+                }
+                if (level == 3){
+
+                    var num1 = Math.floor(Math.random() * 25) + 1; // Số ngẫu nhiên từ 1-25
+                    var num2 = Math.floor(Math.random() * 25) + 1; // Số ngẫu nhiên từ 1-25
+                    var num3 = Math.floor(Math.random() * 25) + 1; // Số ngẫu nhiên từ 1-25
+                    var question = num1 + " + " + num2 + " + " + num3; // Câu hỏi là phép cộng ba số
+        
+                    var answer = prompt(question); // Hiển thị câu hỏi và yêu cầu người chơi nhập câu trả lời
+        
+                    checkAnswer(answer, num1 + num2 + num3); // Kiểm tra câu trả lời
+                    }
+                    
+                    if (level == 4){
+
+                        var num1 = Math.floor(Math.random() * 25) + 1; // Số ngẫu nhiên từ 1-25
+                        var num2 = Math.floor(Math.random() * 10) + 1; // Số ngẫu nhiên từ 1-10
+                        var num3 = Math.floor(Math.random() * 5) + 1; // Số ngẫu nhiên từ 1-5
+                        var question = num1 + " + " + num2 + " x " + num3; // Câu hỏi là phép cộng ba số
+            
+                        var answer = prompt(question); // Hiển thị câu hỏi và yêu cầu người chơi nhập câu trả lời
+            
+                        checkAnswer(answer, num1 + num2 * num3); // Kiểm tra câu trả lời
+                        }
+                        if (level == 5){
+
+                            var num1 = Math.floor(Math.random() * 10) + 1; // Số ngẫu nhiên từ 1-10
+                            var num2 = Math.floor(Math.random() * 10) + 1; // Số ngẫu nhiên từ 1-10
+                            var num3 = Math.floor(Math.random() * 15) + 1; // Số ngẫu nhiên từ 1-25
+                            var question = num1 + " * " + num2 + " - " + num3; // Câu hỏi là phép cộng ba số
+                
+                            var answer = prompt(question); // Hiển thị câu hỏi và yêu cầu người chơi nhập câu trả lời
+                
+                            checkAnswer(answer, num1 * num2 - num3); // Kiểm tra câu trả lời
+                            }
+            if (wronganswer == 5) {
+                return;
+            }   
+        }
+
+        function checkAnswer(userAnswer, correctAnswer) {
+            if (parseInt(userAnswer) === correctAnswer) {
+                rightanswer += 1;
+                score += 10;
+                alert("Câu trả lời đúng! Bạn được 10 điểm.");
+            } else {
+                alert("Câu trả lời sai rồi! Đáp án đúng là " + correctAnswer);
+                alert("Bạn bị trừ 5 điểm.");
+                wronganswer += 1;
+                score -= 5;
+            }
+
+            if (level == 1){
+            if (rightanswer <= 10) {
+                startGame();
+            } else {
+                alert("Chúc mừng! Bạn đã hoàn thành tất cả 10 đáp án đúng.");
+                alert("cấp độ kế tiếp")
+                level += 1;
+                
+                }
+            }
+            if (level == 2){
+                if (rightanswer <= 20) {
+                    startGame();
+                } else {
+                    alert("Chúc mừng! Bạn đã hoàn thành tiếp 10 đáp án đúng.");
+                    alert("cấp độ kế tiếp")
+                    level += 1;
+                    
+                    }
+                }
+                if (level == 3){
+                    if (rightanswer <= 30) {
+                        startGame();
+                    } else {
+                        alert("Chúc mừng! Bạn đã hoàn thành tiếp 10 đáp án đúng.");
+                        alert("cấp độ kế tiếp")
+                        level += 1;
+                        
+                        }
+                    }
+                    if (level == 4){
+                        if (rightanswer <= 40) {
+                            startGame();
+                        } else {
+                            alert("Chúc mừng! Bạn đã hoàn thành tiếp 10 đáp án đúng.");
+                            alert("cấp độ kế tiếp")
+                            level += 1;
+                            
+                            }
+                        }
+                        if (level == 5){
+                            if (rightanswer <= 50) {
+                                startGame();
+                            } else {
+                                alert("Chúc mừng! Bạn đã hoàn thành MathGame.");
+                                level += 1;
+                                
+                                }
+                            }
+        }
+       
+
+    </script>
+</body>
+</html>
